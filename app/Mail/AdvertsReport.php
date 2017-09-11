@@ -21,7 +21,7 @@ class AdvertsReport extends Mailable
     public function __construct()
     {
         $today = \Carbon\Carbon::today();
-        $this->uri = url('reports/download', [$today->year, $today->month, $today->day]);
+        $this->uri = url('reports', [$today->year, $today->month, $today->day]);
     }
 
     /**

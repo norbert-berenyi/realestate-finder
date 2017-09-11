@@ -18,6 +18,16 @@ Route::get('/', function ()
     return view('home', compact('ads'));
 });
 
+Route::get('/reports/{year}/{month}/{day}', function ($year, $month, $day)
+{
+	$from = \Carbon\Carbon::create($year, $month, $day, 0);
+	$to = \Carbon\Carbon::create($year, $month, $day, 23, 59);
+
+	$ads = App\Advert::whereBetween('created_at', [$from, $to])->get();
+
+	return view('home', ['ads' => $ads, 'link' => $year . '/' . $month . '/' . $day]);
+});
+
 Route::get('/reports/download/{year}/{month}/{day}', function ($year, $month, $day)
 {
 	$from = \Carbon\Carbon::create($year, $month, $day, 0);

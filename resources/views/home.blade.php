@@ -6,6 +6,13 @@
 
 		<br>
 
+		<div class="content is-clearfix">
+			<h1 class="is-pulled-left">Ads:</h1>
+
+
+			<a class="button is-primary is-pulled-right" href="{{ url('/reports/download/' . $link) }}">Download</a>
+		</div>
+
 		<table class="table is-bordered is-fullwidth">
 			
 			<thead>
