@@ -33,5 +33,5 @@ Route::get('/reports/download/{year}/{month}/{day}', function ($year, $month, $d
 
 	    });
 
-	})->export('csv');
+	})->export('xlsx');
 });
