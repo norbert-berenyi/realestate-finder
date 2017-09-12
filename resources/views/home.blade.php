@@ -26,7 +26,7 @@
 						<th>Address</th>
 						<th>Price</th>
 						<th>Area</th>
-						<th></th>
+						<th>Good</th>
 
 					</tr>
 
@@ -52,33 +52,38 @@
 
 			</table>
 
-			@foreach($ads as $ad)
+			<table class="table is-bordered is-fullwidth is-hidden-desktop" v-for="(ad, index) in ads">
 
-				<table class="table is-bordered is-fullwidth is-hidden-desktop">
+				<tr>
+					<th width="20px">#</th>
+					<td>@{{ ad.id }}</td>
+				</tr>
 
-					<tr>
-						<th width="20px">#</th>
-						<td>{{ $ad->id }}</td>
-					</tr>
+				<tr>
+					<th>Address</th>
+					<td><a :href="ad.link" target="_blank" @click="seen(index)">@{{ ad.address }}</a></td>
+				</tr>
 
-					<tr>
-						<th>Address</th>
-						<td><a href="{{ $ad->link }}" target="_blank">{{ $ad->address }}</a></td>
-					</tr>
+				<tr>
+					<th>Price</th>
+					<td>@{{ ad.price }} Ft/hó</td>
+				</tr>
 
-					<tr>
-						<th>Price</th>
-						<td>{{ number_format($ad->price, 0, ',', '.') }} Ft/hó</td>
-					</tr>
+				<tr>
+					<th>Area</th>
+					<td>@{{ ad.size }} m<sup>2</sup></td>
+				</tr>
 
-					<tr>
-						<th>Area</th>
-						<td>{{ $ad->size }} m<sup>2</sup></td>
-					</tr>
+				<tr>
+					<th>Good</th>
+					<td>
+						<label class="checkbox">
+							<input type="checkbox" v-model="ad.promising" @click="update(index)">
+						</label>
+					</td>
+				</tr>
 
-				</table>
-
-			@endforeach
+			</table>
 
 		</section>
 
