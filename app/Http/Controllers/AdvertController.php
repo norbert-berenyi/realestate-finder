@@ -59,8 +59,6 @@ class AdvertController extends Controller
     {
         $advert = Advert::findOrFail($request->id);
 
-        dd($request->only(['seen', 'promising']));
-
         $advert->update($request->only(['seen', 'promising']));
 
         return 200;
