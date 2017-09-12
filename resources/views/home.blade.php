@@ -34,10 +34,10 @@
 
 				<tbody>
 
-					<tr v-for="(ad, index) in ads">
+					<tr v-for="(ad, index) in ads" :class="{'is-selected': ad.seen && ad.promising}">
 
 						<td>@{{ ad.id }}</td>
-						<td><a :href="ad.link" target="_blank" @click="seen(index)">@{{ ad.address }}</a></td>
+						<td><a :href="ad.link" target="_blank" :class="{'has-text-danger': ad.seen && !ad.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
 						<td>@{{ ad.price }} Ft/hó</td>
 						<td>@{{ ad.size }} m<sup>2</sup></td>
 						<td>
