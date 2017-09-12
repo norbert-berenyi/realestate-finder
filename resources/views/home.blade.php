@@ -54,27 +54,27 @@
 
 			<table class="table is-bordered is-fullwidth is-hidden-desktop" v-for="(ad, index) in ads">
 
-				<tr>
+				<tr :class="{'is-selected': ad.seen && ad.promising}">
 					<th width="20px">#</th>
 					<td>@{{ ad.id }}</td>
 				</tr>
 
-				<tr>
+				<tr :class="{'is-selected': ad.seen && ad.promising}">
 					<th>Address</th>
-					<td><a :href="ad.link" target="_blank" @click="seen(index)">@{{ ad.address }}</a></td>
+					<td><a :href="ad.link" target="_blank" :class="{'has-text-danger': ad.seen && !ad.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
 				</tr>
 
-				<tr>
+				<tr :class="{'is-selected': ad.seen && ad.promising}">
 					<th>Price</th>
 					<td>@{{ ad.price }} Ft/hó</td>
-				</tr>
+				</tr :class="{'is-selected': ad.seen && ad.promising}">
 
-				<tr>
+				<tr :class="{'is-selected': ad.seen && ad.promising}">
 					<th>Area</th>
 					<td>@{{ ad.size }} m<sup>2</sup></td>
 				</tr>
 
-				<tr>
+				<tr :class="{'is-selected': ad.seen && ad.promising}">
 					<th>Good</th>
 					<td>
 						<label class="checkbox">
