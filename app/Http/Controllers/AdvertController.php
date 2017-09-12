@@ -35,7 +35,7 @@ class AdvertController extends Controller
         $from = Carbon::create($year, $month, $day, 0);
         $to = Carbon::create($year, $month, $day, 23, 59);
 
-        $ads = Advert::whereBetween('created_at', [$from, $to])->get();
+        $ads = Advert::where([['promising', 1], ['seen', 1]])->whereBetween('created_at', [$from, $to])->select('id', 'link', 'address', 'price', 'size')->get();
 
         \Excel::create('Report', function($excel) use($ads) {
 
