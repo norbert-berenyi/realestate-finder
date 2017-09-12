@@ -12,7 +12,7 @@
 
 		<p>Hello!</p>
 
-		<p>Here is the report for today: <a href="{{ $uri }}" target="_blank">{{ $uri }}</a></p>
+		<p>Here is the report for {{ $today->format('l') }}: <a href="{{ $uri }}" target="_blank">{{ $uri }}</a></p>
 
 		<p>--<br>Robot Norbi</p>
 

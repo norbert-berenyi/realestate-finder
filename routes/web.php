@@ -17,3 +17,4 @@ Route::get('/reports/{year}/{month}/{day}', 'AdvertController@report');
 
 Route::get('/reports/download/{year}/{month}/{day}', 'AdvertController@download');
 
+Route::post('advert', 'AdvertController@update');

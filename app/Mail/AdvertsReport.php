@@ -13,6 +13,8 @@ class AdvertsReport extends Mailable
 
     public $uri;
 
+    public $today;
+
     /**
      * Create a new message instance.
      *
@@ -20,8 +22,8 @@ class AdvertsReport extends Mailable
      */
     public function __construct()
     {
-        $today = \Carbon\Carbon::today();
-        $this->uri = url('reports', [$today->year, $today->month, $today->day]);
+        $this->today = \Carbon\Carbon::today();
+        $this->uri = url('reports', [$this->today->year, $this->today->month, $this->today->day]);
     }
 
     /**
@@ -31,7 +33,7 @@ class AdvertsReport extends Mailable
      */
     public function build()
     {
-        return $this->subject('Report for ' . \Carbon\Carbon::today()->format('l'))
+        return $this->subject('Report for ' . $this->today->format('l'))
                     ->view('email.html')
                     ->text('email.text');
     }

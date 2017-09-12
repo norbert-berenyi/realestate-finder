@@ -25,13 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('crawl https://ingatlan.com/lista/kiado+lakas+i-ker+ii-ker+xi-ker+xii-ker+havi-100-150-ezer-Ft+3-szoba-felett')->hourly();
+        $schedule->command('crawl ' . env('CRAWL_URI'))->everyMinute();
 
         $schedule->call(function () {
             
             Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport());
 
-        })->dailyAt(19);
+        })->everyMinute();
     }
 
     /**

@@ -15,7 +15,16 @@
 
     <body>
 
-        @yield('content')
+        <div id="app">
+
+            @yield('content')
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+
+        @yield('js')
 
     </body>
 
