@@ -12,7 +12,7 @@ class CrawlAds extends Command
      *
      * @var string
      */
-    protected $signature = 'crawl {ads}';
+    protected $signature = 'crawl {uri}';
 
     /**
      * The console command description.
@@ -31,6 +31,31 @@ class CrawlAds extends Command
         parent::__construct();
     }
 
+    protected function allowedBy($currentAds, $newAd)
+    {
+        foreach ($currentAds as $currentAd) 
+        {
+            // Check if the addresses are similar
+            similar_text($currentAd->address, $newAd['address'], $similar);
+            
+            // If the address match is higher than 90% and the size of the flats are different (Atleast 3 sqm).
+            if ($similar >= 90.0 && ($newAd['size'] >= ((int)$currentAd->size)+3 || $newAd['size'] <= ((int)$currentAd->size)-3))
+            {
+                $adsAllow[] = true;
+            }
+            elseif ($similar < 90.0) // If the address match is lower than 90%
+            {
+                $adsAllow[] = true;
+            }
+            else
+            {
+                $adsAllow[] = false;
+            }
+        }
+
+        return (!in_array(false, $adsAllow));
+    }
+
     /**
      * Execute the console command.
      *
@@ -38,12 +63,20 @@ class CrawlAds extends Command
      */
     public function handle()
     {
-        $uri = $this->argument('ads');
-        $ads = getAdverts($uri);
+        $newAds = getAdverts($this->argument('uri'));
 
-        foreach ($ads as $ad)
+        foreach ($newAds as $newAd)
         {
-            Advert::firstOrCreate(['address' => $ad['address'], 'size' => $ad['size']], $ad);
-        }
+            $currentAds = Advert::all();
+
+            if (count($currentAds) == 0)
+            {
+                Advert::create($newAd);
+            }
+            elseif($this->allowedBy($currentAds, $newAd))
+            {
+                Advert::create($newAd);
+            }
+    }
     }
 }
