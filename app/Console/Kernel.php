@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
             
             Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport());
 
-        })->dailyAt('21:10');
+        })->dailyAt('19:00');
     }
 
     /**
