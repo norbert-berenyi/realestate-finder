@@ -98,7 +98,15 @@
 			el: '#app',
 
 			data: {
-				ads: {!! $ads !!},
+				unsortedAds: {!! $ads !!},
+			},
+
+			computed: {
+
+				ads: function ()
+				{
+        			return this.unsortedAds.slice().reverse();
+				}
 			},
 
 			methods: {
