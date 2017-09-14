@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,12 +25,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('crawl ' . env('CRAWL_URI'))->hourly();
-
-        $schedule->call(function () {
-            
-            Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport());
-
-        })->dailyAt('19:00');
     }
 
     /**

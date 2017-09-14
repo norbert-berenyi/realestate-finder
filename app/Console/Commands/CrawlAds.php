@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Advert;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class CrawlAds extends Command
 {
@@ -63,6 +64,7 @@ class CrawlAds extends Command
      */
     public function handle()
     {
+        $addedAdverts = 0;
         $newAds = getAdverts($this->argument('uri'));
 
         foreach ($newAds as $newAd)
@@ -76,7 +78,13 @@ class CrawlAds extends Command
             elseif($this->allowedBy($currentAds, $newAd))
             {
                 Advert::create($newAd);
+                $addedAdverts++;
             }
-    }
+        }
+
+        if ($addedAdverts > 0)
+        {
+            Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport(count($newAds)));
+        }
     }
 }

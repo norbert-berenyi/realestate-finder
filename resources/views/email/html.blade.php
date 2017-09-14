@@ -12,9 +12,9 @@
 
 		<p>Hello!</p>
 
-		<p>Here is the report for {{ $today->format('l') }}: <a href="{{ $uri }}" target="_blank">{{ $uri }}</a></p>
+		<p>During the hourly crawl, you have found {{ $numberOfNewAds }} new advertisements, go check <a href="http://ingatlan.devden.xyz/unseen" target="_blank">them</a> out!</p>
 
-		<p>--<br>Robot Norbi</p>
+		<p>--<br>Past Norbi</p>
 
 	</body>
 </html>

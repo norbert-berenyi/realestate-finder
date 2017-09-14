@@ -11,19 +11,16 @@ class AdvertsReport extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $uri;
-
-    public $today;
+    public $numberOfNewAds;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($numberOfNewAds)
     {
-        $this->today = \Carbon\Carbon::today();
-        $this->uri = url('reports', [$this->today->year, $this->today->month, $this->today->day]);
+        $this->numberOfNewAds = $numberOfNewAds;
     }
 
     /**
@@ -33,7 +30,7 @@ class AdvertsReport extends Mailable
      */
     public function build()
     {
-        return $this->subject('Report for ' . $this->today->format('l'))
+        return $this->subject('You found ' . $this->numberOfNewAds . ' new ads!')
                     ->view('email.html')
                     ->text('email.text');
     }

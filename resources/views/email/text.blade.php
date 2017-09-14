@@ -1,6 +1,8 @@
 Hello!
 
-Here is the report for {{ $today->format('l') }}: "{{ $uri }}".
+During the hourly crawl, you have found {{ $numberOfNewAds }} new advertisements, go check them out!
+
+Link: http://ingatlan.devden.xyz/unseen
 
 --
-Robot Norbi
+Past Norbi
