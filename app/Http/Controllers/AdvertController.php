@@ -67,21 +67,6 @@ class AdvertController extends Controller
         return view('adverts', ['ads' => collect($ads)]);
     }
 
-    public function download()
-    {
-        $ads = auth()->user()->adverts()->where([['promising', true], ['seen', true]])->get();
-
-        \Excel::create('Report', function($excel) use($ads) {
-
-            $excel->sheet('Report', function($sheet) use($ads) {
-
-                $sheet->fromArray($ads);
-
-            });
-
-        })->export('xlsx');
-    }
-
     /**
      * Update the specified resource in storage.
      *

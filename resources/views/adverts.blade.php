@@ -10,12 +10,6 @@
 				
 				<h1 class="is-pulled-left">Ads:</h1>
 
-				@if(url()->current() == url('promising'))
-
-					<a class="button is-primary is-pulled-right" href="{{ url('/promising/download') }}">Download</a>
-
-				@endif
-
 			</div>
 
 			@if(count($ads) > 0)

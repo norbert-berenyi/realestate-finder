@@ -21,8 +21,6 @@ Route::get('/promising', 'AdvertController@promising');
 Route::get('/super-promising', 'AdvertController@superPromising');
 Route::get('/duplicate', 'AdvertController@duplicate');
 
-Route::get('/promising/download', 'AdvertController@download');
-
 Route::post('advert', 'AdvertController@update');
 Auth::routes();
 
