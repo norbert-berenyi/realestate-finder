@@ -21,7 +21,7 @@
 
                 <div class="navbar-brand">
 
-                    <a class="navbar-item" href="http://bulma.io">
+                    <a class="navbar-item" href="{{ url('/') }}">
 
                         <strong>Ingatlan<span class="has-text-primary">.com</span> improved</strong>
 
