@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', 'AdvertController@index');
+Route::get('/', 'AdvertController@index')->name('home');
 
-Route::get('/reports/{year}/{month}/{day}', 'AdvertController@report');
+Route::get('/unseen', 'AdvertController@unseen');
+Route::get('/seen', 'AdvertController@seen');
+Route::get('/promising', 'AdvertController@promising');
 
-Route::get('/reports/download/{year}/{month}/{day}', 'AdvertController@download');
+Route::get('/promising/download', 'AdvertController@download');
 
 Route::post('advert', 'AdvertController@update');
+Auth::routes();
+

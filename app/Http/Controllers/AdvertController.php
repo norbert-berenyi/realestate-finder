@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class AdvertController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,22 +31,30 @@ class AdvertController extends Controller
         return view('adverts', compact('ads'));
     }
 
-    public function report($year, $month, $day)
+    public function unseen()
     {
-        $from = Carbon::create($year, $month, $day, 0);
-        $to = Carbon::create($year, $month, $day, 23, 59);
+        $ads = Advert::where('seen', false)->get();
 
-        $ads = Advert::whereBetween('created_at', [$from, $to])->get();
-
-        return view('adverts', ['ads' => $ads, 'link' => $year . '/' . $month . '/' . $day]);
+        return view('adverts', compact('ads'));
     }
 
-    public function download($year, $month, $day)
+    public function seen()
     {
-        $from = Carbon::create($year, $month, $day, 0);
-        $to = Carbon::create($year, $month, $day, 23, 59);
+        $ads = Advert::where('seen', true)->get();
 
-        $ads = Advert::where([['promising', 1], ['seen', 1]])->whereBetween('created_at', [$from, $to])->select('id', 'link', 'address', 'price', 'size')->get();
+        return view('adverts', compact('ads'));
+    }
+
+    public function promising()
+    {
+        $ads = Advert::where([['promising', true], ['seen', true]])->get();
+
+        return view('adverts', compact('ads'));
+    }
+
+    public function download()
+    {
+        $ads = Advert::where([['promising', true], ['seen', true]])->get();
 
         \Excel::create('Report', function($excel) use($ads) {
 

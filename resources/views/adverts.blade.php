@@ -10,9 +10,7 @@
 				
 				<h1 class="is-pulled-left">Ads:</h1>
 
-				@if(url()->current() != url('/'))
-					<a class="button is-primary is-pulled-right" href="{{ url('/reports/download/' . $link) }}">Download</a>
-				@endif
+				<a class="button is-primary is-pulled-right" href="{{ url('/promising/download') }}">Download</a>
 
 			</div>
 
