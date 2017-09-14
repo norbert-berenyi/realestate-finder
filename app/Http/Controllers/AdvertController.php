@@ -17,7 +17,7 @@ class AdvertController extends Controller
     {
         $ads = Advert::all();
 
-        return view('home', compact('ads'));
+        return view('adverts', compact('ads'));
     }
 
     public function report($year, $month, $day)
@@ -27,7 +27,7 @@ class AdvertController extends Controller
 
         $ads = Advert::whereBetween('created_at', [$from, $to])->get();
 
-        return view('home', ['ads' => $ads, 'link' => $year . '/' . $month . '/' . $day]);
+        return view('adverts', ['ads' => $ads, 'link' => $year . '/' . $month . '/' . $day]);
     }
 
     public function download($year, $month, $day)
