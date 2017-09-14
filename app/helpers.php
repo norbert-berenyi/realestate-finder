@@ -30,7 +30,7 @@ function getAdverts($firstPage)
 		
 		$ads = array_merge($ads, $crawler->filter('div.listing__card')->each(function ($advert) 
 		{
-			$tmp['link'] = 'https://ingatlan.com/' . $advert->filter('a.listing__link')->first()->attr('href');
+			$tmp['link'] = 'https://ingatlan.com' . $advert->filter('a.listing__link')->first()->attr('href');
 
 			$tmp['price'] = (int) preg_replace('/(\bFt\/hó)|(\s)/', '', $advert->filter('div.price')->first()->text());
 
