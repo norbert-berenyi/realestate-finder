@@ -22,8 +22,6 @@ class CreateAdvertsTable extends Migration
             $table->integer('size');
             $table->boolean('private');
 
-            $table->boolean('duplicate')->default(false);
-
             $table->timestamps();
         });
     }

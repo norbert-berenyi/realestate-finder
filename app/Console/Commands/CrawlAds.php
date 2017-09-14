@@ -75,15 +75,10 @@ class CrawlAds extends Command
             if (count($currentAds) == 0)
             {
                 Advert::create($newAd);
+                $addedAdverts++;
             }
             elseif($this->allowedBy($currentAds, $newAd))
             {
-                Advert::create($newAd);
-                $addedAdverts++;
-            }
-            else
-            {
-                $newAd['duplicate'] = true;
                 Advert::create($newAd);
                 $addedAdverts++;
             }

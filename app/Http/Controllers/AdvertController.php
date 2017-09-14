@@ -26,28 +26,28 @@ class AdvertController extends Controller
      */
     public function index()
     {
-        $ads = auth()->user()->adverts()->where('duplicate', false)->get();
+        $ads = auth()->user()->adverts;
 
         return view('adverts', compact('ads'));
     }
 
     public function unseen()
     {
-        $ads = auth()->user()->adverts()->where([['seen', false], ['duplicate', false]])->get();
+        $ads = auth()->user()->adverts()->where('seen', false)->get();
 
         return view('adverts', compact('ads'));
     }
 
     public function seen()
     {
-        $ads = auth()->user()->adverts()->where([['seen', true], ['duplicate', false]])->get();
+        $ads = auth()->user()->adverts()->where('seen', true)->get();
 
         return view('adverts', compact('ads'));
     }
 
     public function promising()
     {
-        $ads = auth()->user()->adverts()->where([['promising', true], ['seen', true], ['duplicate', false]])->get();
+        $ads = auth()->user()->adverts()->where([['promising', true], ['seen', true]])->get();
 
         return view('adverts', compact('ads'));
     }
@@ -67,16 +67,9 @@ class AdvertController extends Controller
         return view('adverts', ['ads' => collect($ads)]);
     }
 
-    public function duplicate()
-    {
-        $ads = auth()->user()->adverts()->where('duplicate', true)->get();
-
-        return view('adverts', compact('ads'));
-    }
-
     public function download()
     {
-        $ads = auth()->user()->adverts()->where([['promising', true], ['seen', true], ['duplicate', false]])->get();
+        $ads = auth()->user()->adverts()->where([['promising', true], ['seen', true]])->get();
 
         \Excel::create('Report', function($excel) use($ads) {
 

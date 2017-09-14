@@ -48,15 +48,11 @@
                         </a>
 
                         <a class="navbar-item {{ url()->current() == url('promising') ? 'is-active' : '' }}" href="{{ url('promising') }}">
-                            Promising adverts
+                            Liked by me
                         </a>
 
                         <a class="navbar-item {{ url()->current() == url('super-promising') ? 'is-active' : '' }}" href="{{ url('super-promising') }}">
-                            Superpromising adverts
-                        </a>
-
-                        <a class="navbar-item {{ url()->current() == url('duplicate') ? 'is-active' : '' }}" href="{{ url('duplicate') }}">
-                            Posible duplicates
+                            Liked by everyone
                         </a>
 
                     </div>
