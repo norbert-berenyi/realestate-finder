@@ -38,15 +38,15 @@
 
 					<tbody>
 
-						<tr v-for="(ad, index) in ads" :class="{'is-selected': ad.seen && ad.promising}">
+						<tr v-for="(ad, index) in ads" :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 
 							<td>@{{ ad.id }}</td>
-							<td><a :href="ad.link" target="_blank" :class="{'has-text-info': ad.seen && !ad.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
+							<td><a :href="ad.link" target="_blank" :class="{'has-text-info': ad.pivot.seen && !ad.pivot.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
 							<td>@{{ ad.price }} Ft/hó</td>
 							<td>@{{ ad.size }} m<sup>2</sup></td>
 							<td>
 								<label class="checkbox">
-									<input type="checkbox" v-model="ad.promising" @click="update(index)">
+									<input type="checkbox" v-model="ad.pivot.promising" @click="update(index)">
 								</label>
 							</td>
 
@@ -58,31 +58,31 @@
 
 				<table class="table is-bordered is-fullwidth is-hidden-desktop" v-for="(ad, index) in ads">
 
-					<tr :class="{'is-selected': ad.seen && ad.promising}">
+					<tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 						<th width="20px">#</th>
 						<td>@{{ ad.id }}</td>
 					</tr>
 
-					<tr :class="{'is-selected': ad.seen && ad.promising}">
+					<tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 						<th>Address</th>
-						<td><a :href="ad.link" target="_blank" :class="{'has-text-info': ad.seen && !ad.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
+						<td><a :href="ad.link" target="_blank" :class="{'has-text-info': ad.pivot.seen && !ad.pivot.promising}" @click="seen(index)">@{{ ad.address }}</a></td>
 					</tr>
 
-					<tr :class="{'is-selected': ad.seen && ad.promising}">
+					<tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 						<th>Price</th>
 						<td>@{{ ad.price }} Ft/hó</td>
-					</tr :class="{'is-selected': ad.seen && ad.promising}">
+					</tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 
-					<tr :class="{'is-selected': ad.seen && ad.promising}">
+					<tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 						<th>Area</th>
 						<td>@{{ ad.size }} m<sup>2</sup></td>
 					</tr>
 
-					<tr :class="{'is-selected': ad.seen && ad.promising}">
+					<tr :class="{'is-selected': ad.pivot.seen && ad.pivot.promising}">
 						<th>Good</th>
 						<td>
 							<label class="checkbox">
-								<input type="checkbox" v-model="ad.promising" @click="update(index)">
+								<input type="checkbox" v-model="ad.pivot.promising" @click="update(index)">
 							</label>
 						</td>
 					</tr>
@@ -130,15 +130,15 @@
 					axios.post('/advert', 
 					{
 						id: app.ads[index].id,
-						seen: app.ads[index].seen,
-						promising: app.ads[index].promising
+						seen: app.ads[index].pivot.seen,
+						promising: app.ads[index].pivot.promising
 
 					});
 				},
 
 				seen: function (index)
 				{
-					this.ads[index].seen = true;
+					this.ads[index].pivot.seen = true;
 
 					this.update(index);
 				}

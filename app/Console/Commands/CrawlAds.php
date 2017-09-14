@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use App\Advert;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -79,6 +80,23 @@ class CrawlAds extends Command
             {
                 Advert::create($newAd);
                 $addedAdverts++;
+            }
+            else
+            {
+                $newAd['duplicate'] = true;
+                Advert::create($newAd);
+                $addedAdverts++;
+            }
+        }
+
+        foreach (Advert::all() as $advert)
+        {
+            foreach (User::all() as $user) 
+            {
+                if (!$advert->users->contains($user->id)) 
+                {
+                    $advert->users()->attach($user->id);
+                }
             }
         }
 

@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function adverts()
+    {
+        return $this->belongsToMany(Advert::class)->withPivot('seen', 'promising');
+    }
 }
