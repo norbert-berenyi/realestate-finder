@@ -97,7 +97,7 @@ class CrawlAds extends Command
 
         if ($addedAdverts > 0)
         {
-            Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport(count($newAds)));
+            Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport($addedAdverts));
         }
     }
 }
