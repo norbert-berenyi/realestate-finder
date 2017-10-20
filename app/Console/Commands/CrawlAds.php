@@ -65,7 +65,6 @@ class CrawlAds extends Command
      */
     public function handle()
     {
-        $addedAdverts = 0;
         $newAds = getAdverts($this->argument('uri'));
 
         foreach ($newAds as $newAd)
@@ -75,12 +74,10 @@ class CrawlAds extends Command
             if (count($currentAds) == 0)
             {
                 Advert::create($newAd);
-                $addedAdverts++;
             }
             elseif($this->allowedBy($currentAds, $newAd))
             {
                 Advert::create($newAd);
-                $addedAdverts++;
             }
         }
 
@@ -93,11 +90,6 @@ class CrawlAds extends Command
                     $advert->users()->attach($user->id);
                 }
             }
-        }
-
-        if ($addedAdverts > 0)
-        {
-            Mail::to('bery08@gmail.com')->send(new \App\Mail\AdvertsReport($addedAdverts));
         }
     }
 }

@@ -52,21 +52,6 @@ class AdvertController extends Controller
         return view('adverts', compact('ads'));
     }
 
-    public function superPromising()
-    {
-        foreach (auth()->user()->adverts as $ad)
-        {
-            if ($ad->superPromising()) $ads[] = $ad;
-        }
-
-        if (!isset($ads))
-        {
-            $ads = [];
-        }
-
-        return view('adverts', ['ads' => collect($ads)]);
-    }
-
     /**
      * Update the specified resource in storage.
      *

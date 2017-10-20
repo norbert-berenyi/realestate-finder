@@ -64,7 +64,7 @@
 
                             <div class="control">
 
-                                <button class="button is-primary">Login</button>
+                                <button class="button is-primary is-outlined">Login</button>
 
                             </div>
 

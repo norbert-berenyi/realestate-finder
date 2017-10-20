@@ -10,12 +10,13 @@
         <title>Better Ingatlan.com</title>
 
         <link rel="stylesheet" href="/css/bulma.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     </head>
 
     <body>
 
-        <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation" id="navbar">
+        <nav class="navbar is-dark has-shadow" role="navigation" aria-label="main navigation" id="navbar">
 
             <div class="container">
 
@@ -39,21 +40,52 @@
 
                     <div class="navbar-end">
 
-                        <a class="navbar-item {{ url()->current() == url('unseen') ? 'is-active' : '' }}" href="{{ url('unseen') }}">
-                            New adverts
-                        </a>
+                        @guest
 
-                        <a class="navbar-item {{ url()->current() == url('seen') ? 'is-active' : '' }}" href="{{ url('seen') }}">
-                            Seen adverts
-                        </a>
+                            <a class="navbar-item {{ url()->current() == url('login') ? 'is-active' : '' }}" href="{{ url('login') }}">
+                                <span class="icon">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                </span>
+                                <span>Login</span>
+                            </a>
 
-                        <a class="navbar-item {{ url()->current() == url('promising') ? 'is-active' : '' }}" href="{{ url('promising') }}">
-                            Liked by me
-                        </a>
+                        @endif
 
-                        <a class="navbar-item {{ url()->current() == url('super-promising') ? 'is-active' : '' }}" href="{{ url('super-promising') }}">
-                            Liked by everyone
-                        </a>
+                        @auth
+
+                            <a class="navbar-item {{ url()->current() == url('unseen') ? 'is-active' : '' }}" href="{{ url('unseen') }}">
+                                <span class="icon">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </span>
+                                <span>New adverts</span>
+                            </a>
+
+                            <a class="navbar-item {{ url()->current() == url('seen') ? 'is-active' : '' }}" href="{{ url('seen') }}">
+                                <span class="icon">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </span>
+                                <span>Seen adverts</span>
+                            </a>
+
+                            <a class="navbar-item {{ url()->current() == url('promising') ? 'is-active' : '' }}" href="{{ url('promising') }}">
+                                <span class="icon">
+                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                </span>
+                                <span>Liked by me</span>
+                            </a>
+
+                            <a href="{{ route('logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span class="icon">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </span>
+                                <span>Logout</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
+                        @endif
 
                     </div>
                     

@@ -2,9 +2,9 @@
 
 @section('content')
 
-	<div class="container">
+	<section class="section">
 
-		<section class="section">
+		<div class="container">
 
 			<div class="content is-clearfix">
 				
@@ -93,9 +93,9 @@
 
 			@endif
 
-		</section>
+		</div><!-- end of .container -->
 
-	</div>
+	</section>
 
 @endsection
 
