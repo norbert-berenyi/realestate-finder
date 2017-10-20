@@ -60,15 +60,17 @@
 
                         </div>
 
-                        <dif class="field">
+                        <div class="field is-grouped">
+                                    
+                            <p class="control">
+                                <button class="button is-primary">Login</button>
+                            </p>
 
-                            <div class="control">
+                            <p class="control">
+                                <a href="{{ route('password.request') }}" class="button is-text">Forgot Your Password?</a>
+                            </p>
 
-                                <button class="button is-primary is-outlined">Login</button>
-
-                            </div>
-
-                        </dif>
+                        </div>
 
                     </form>
 
