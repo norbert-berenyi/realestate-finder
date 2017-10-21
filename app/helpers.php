@@ -47,3 +47,10 @@ function getAdverts($firstPage)
 
 	return collect($ads);
 }
+
+function newAdverts()
+{
+	$ads = auth()->user()->adverts()->where('seen', false)->get();
+
+	return count($ads);
+}

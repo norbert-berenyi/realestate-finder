@@ -58,6 +58,7 @@
                                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                 </span>
                                 <span>New adverts</span>
+                                @if(newAdverts())&nbsp;<span class="tag is-primary">{{ newAdverts() }}</span>@endif
                             </a>
 
                             <a class="navbar-item {{ url()->current() == url('seen') ? 'is-active' : '' }}" href="{{ url('seen') }}">
