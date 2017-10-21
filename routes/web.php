@@ -13,6 +13,7 @@
 
 Route::get('/', 'AdvertController@index')->name('home');
 
+Route::get('home', 'AdvertController@index');
 Route::get('unseen', 'AdvertController@unseen');
 Route::get('seen', 'AdvertController@seen');
 Route::get('promising', 'AdvertController@promising');
