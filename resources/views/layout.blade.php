@@ -57,7 +57,7 @@
                                 <span class="icon">
                                     <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                 </span>
-                                <span>New adverts</span>
+                                <span>New</span>
                                 @if(newAdverts())&nbsp;<span class="tag is-primary">{{ newAdverts() }}</span>@endif
                             </a>
 
@@ -65,14 +65,14 @@
                                 <span class="icon">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </span>
-                                <span>Seen adverts</span>
+                                <span>Seen</span>
                             </a>
 
                             <a class="navbar-item {{ url()->current() == url('promising') ? 'is-active' : '' }}" href="{{ url('promising') }}">
                                 <span class="icon">
                                     <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                 </span>
-                                <span>Liked by me</span>
+                                <span>Liked</span>
                             </a>
 
                             <a href="{{ route('logout') }}" class="navbar-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
